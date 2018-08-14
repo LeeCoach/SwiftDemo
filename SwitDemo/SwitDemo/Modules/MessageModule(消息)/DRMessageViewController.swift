@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DRMessageViewController: UIViewController {
+class DRMessageViewController: DRViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

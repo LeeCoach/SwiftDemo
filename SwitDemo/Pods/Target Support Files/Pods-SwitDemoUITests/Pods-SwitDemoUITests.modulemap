@@ -1,0 +1,6 @@
+framework module Pods_SwitDemoUITests {
+  umbrella header "Pods-SwitDemoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
