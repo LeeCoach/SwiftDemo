@@ -14,7 +14,10 @@ target 'SwitDemo' do
     #图片加载
     pod 'Kingfisher', '~> 4.8.1'
     #自动布局约束
-    pod 'SnapKit', '~> 4.0.0'
+    pod 'SnapKit', '~> 5.0.0'
+    #是一个可以帮助我们简化异步编程的框架,KVO，异步操作 和 流 全部被统一成抽象序列
+    #pod 'RxSwift', '~> 5.0'
+    #pod 'RxCocoa', '~> 5.0'
 
   # Pods for SwitDemo
 
