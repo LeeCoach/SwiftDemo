@@ -17,11 +17,16 @@
 		B247A3A72107028700110864 /* DRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3A62107028700110864 /* DRNavigationController.swift */; };
 		B247A3A9210702A800110864 /* DRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3A8210702A800110864 /* DRViewController.swift */; };
 		B247A3AD2107038900110864 /* DRHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3AC2107038900110864 /* DRHomeViewController.swift */; };
-		B247A3B0210703B300110864 /* DRMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3AF210703B300110864 /* DRMeViewController.swift */; };
 		B247A3B42107077500110864 /* DRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3B32107077500110864 /* DRTabBarController.swift */; };
 		B247A3B621070B5400110864 /* DRMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3B521070B5400110864 /* DRMessageViewController.swift */; };
 		B247A3B821070B7500110864 /* DRToolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3B721070B7500110864 /* DRToolViewController.swift */; };
 		B247A3BA21070FBA00110864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247A3B921070FBA00110864 /* Main.storyboard */; };
+		B267572A230061AF0050A03E /* DRMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2675729230061AF0050A03E /* DRMeViewController.swift */; };
+		B267572C230062B60050A03E /* DRMineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267572B230062B60050A03E /* DRMineTableViewCell.swift */; };
+		B2675733230063A00050A03E /* DRCellConfingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2675732230063A00050A03E /* DRCellConfingModel.swift */; };
+		B2675735230067C80050A03E /* DRCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2675734230067C80050A03E /* DRCommon.swift */; };
+		B267573E230070E80050A03E /* DRColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267573D230070E80050A03E /* DRColorExtension.swift */; };
+		B26757402300710B0050A03E /* DRFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267573F2300710B0050A03E /* DRFontExtension.swift */; };
 		F1F63E5E99FC6C368F548BD3 /* Pods_SwitDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27B7B91A0F125A43760AFE /* Pods_SwitDemoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,11 +69,16 @@
 		B247A3A62107028700110864 /* DRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRNavigationController.swift; sourceTree = "<group>"; };
 		B247A3A8210702A800110864 /* DRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRViewController.swift; sourceTree = "<group>"; };
 		B247A3AC2107038900110864 /* DRHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRHomeViewController.swift; sourceTree = "<group>"; };
-		B247A3AF210703B300110864 /* DRMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMeViewController.swift; sourceTree = "<group>"; };
 		B247A3B32107077500110864 /* DRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRTabBarController.swift; sourceTree = "<group>"; };
 		B247A3B521070B5400110864 /* DRMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMessageViewController.swift; sourceTree = "<group>"; };
 		B247A3B721070B7500110864 /* DRToolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRToolViewController.swift; sourceTree = "<group>"; };
 		B247A3B921070FBA00110864 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B2675729230061AF0050A03E /* DRMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRMeViewController.swift; sourceTree = "<group>"; };
+		B267572B230062B60050A03E /* DRMineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRMineTableViewCell.swift; sourceTree = "<group>"; };
+		B2675732230063A00050A03E /* DRCellConfingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRCellConfingModel.swift; sourceTree = "<group>"; };
+		B2675734230067C80050A03E /* DRCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRCommon.swift; sourceTree = "<group>"; };
+		B267573D230070E80050A03E /* DRColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRColorExtension.swift; sourceTree = "<group>"; };
+		B267573F2300710B0050A03E /* DRFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRFontExtension.swift; sourceTree = "<group>"; };
 		E3584F3818AC655FB7D1EDA7 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59FAB851A87DAFEA36E2FFF /* Pods-SwitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemoUITests/Pods-SwitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,13 +159,9 @@
 		B247A3742107002800110864 /* SwitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B267572D2300638A0050A03E /* BasicService */,
+				B26757312300638A0050A03E /* General */,
 				B247A3AA210702D700110864 /* Modules */,
-				B247A3A32107019900110864 /* Main */,
-				B247A3752107002800110864 /* AppDelegate.swift */,
-				B247A3B921070FBA00110864 /* Main.storyboard */,
-				B247A37C2107002900110864 /* Assets.xcassets */,
-				B247A37E2107002900110864 /* LaunchScreen.storyboard */,
-				B247A3812107002900110864 /* Info.plist */,
 			);
 			path = SwitDemo;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 		B247A3AA210702D700110864 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B247A3A32107019900110864 /* Main */,
 				B247A3AB210702EB00110864 /* HomeModule(首页) */,
 				B247A3B22107040000110864 /* MessageModule(消息) */,
 				B247A3B1210703DA00110864 /* ToolModule(工具) */,
@@ -210,7 +217,9 @@
 		B247A3AE2107039B00110864 /* MeModule(我的) */ = {
 			isa = PBXGroup;
 			children = (
-				B247A3AF210703B300110864 /* DRMeViewController.swift */,
+				B2675728230061AF0050A03E /* Controller */,
+				B2675722230061AF0050A03E /* SubModules */,
+				B2675727230061AF0050A03E /* View */,
 			);
 			path = "MeModule(我的)";
 			sourceTree = "<group>";
@@ -229,6 +238,132 @@
 				B247A3B521070B5400110864 /* DRMessageViewController.swift */,
 			);
 			path = "MessageModule(消息)";
+			sourceTree = "<group>";
+		};
+		B2675722230061AF0050A03E /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				B2675723230061AF0050A03E /* DRSetting(设置) */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		B2675723230061AF0050A03E /* DRSetting(设置) */ = {
+			isa = PBXGroup;
+			children = (
+				B2675724230061AF0050A03E /* Controller */,
+				B2675725230061AF0050A03E /* Model */,
+				B2675726230061AF0050A03E /* View */,
+			);
+			path = "DRSetting(设置)";
+			sourceTree = "<group>";
+		};
+		B2675724230061AF0050A03E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2675725230061AF0050A03E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2675726230061AF0050A03E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2675727230061AF0050A03E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B267572B230062B60050A03E /* DRMineTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2675728230061AF0050A03E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2675729230061AF0050A03E /* DRMeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B267572D2300638A0050A03E /* BasicService */ = {
+			isa = PBXGroup;
+			children = (
+				B267573623006F970050A03E /* Category */,
+				B267572E2300638A0050A03E /* Common */,
+			);
+			path = BasicService;
+			sourceTree = "<group>";
+		};
+		B267572E2300638A0050A03E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B267572F2300638A0050A03E /* UITableView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B267572F2300638A0050A03E /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				B26757302300638A0050A03E /* DRCellConfing */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		B26757302300638A0050A03E /* DRCellConfing */ = {
+			isa = PBXGroup;
+			children = (
+				B2675732230063A00050A03E /* DRCellConfingModel.swift */,
+			);
+			path = DRCellConfing;
+			sourceTree = "<group>";
+		};
+		B26757312300638A0050A03E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				B247A3752107002800110864 /* AppDelegate.swift */,
+				B247A3B921070FBA00110864 /* Main.storyboard */,
+				B247A37C2107002900110864 /* Assets.xcassets */,
+				B247A37E2107002900110864 /* LaunchScreen.storyboard */,
+				B247A3812107002900110864 /* Info.plist */,
+				B2675734230067C80050A03E /* DRCommon.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		B267573623006F970050A03E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				B267573A230070A70050A03E /* UIFont */,
+				B267573723006F970050A03E /* UIColor */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		B267573723006F970050A03E /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				B267573D230070E80050A03E /* DRColorExtension.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		B267573A230070A70050A03E /* UIFont */ = {
+			isa = PBXGroup;
+			children = (
+				B267573F2300710B0050A03E /* DRFontExtension.swift */,
+			);
+			path = UIFont;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,14 +583,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2675733230063A00050A03E /* DRCellConfingModel.swift in Sources */,
 				B247A3B821070B7500110864 /* DRToolViewController.swift in Sources */,
+				B267573E230070E80050A03E /* DRColorExtension.swift in Sources */,
 				B247A3A72107028700110864 /* DRNavigationController.swift in Sources */,
 				B247A3B621070B5400110864 /* DRMessageViewController.swift in Sources */,
-				B247A3B0210703B300110864 /* DRMeViewController.swift in Sources */,
+				B26757402300710B0050A03E /* DRFontExtension.swift in Sources */,
 				B247A3A9210702A800110864 /* DRViewController.swift in Sources */,
+				B2675735230067C80050A03E /* DRCommon.swift in Sources */,
 				B247A3762107002800110864 /* AppDelegate.swift in Sources */,
+				B267572A230061AF0050A03E /* DRMeViewController.swift in Sources */,
 				B247A3B42107077500110864 /* DRTabBarController.swift in Sources */,
 				B247A3AD2107038900110864 /* DRHomeViewController.swift in Sources */,
+				B267572C230062B60050A03E /* DRMineTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +760,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1F4F31B4D379B136DEBEA1E1 /* Pods-SwitDemo.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2SL7M3DUZA;
 				INFOPLIST_FILE = SwitDemo/Info.plist;
