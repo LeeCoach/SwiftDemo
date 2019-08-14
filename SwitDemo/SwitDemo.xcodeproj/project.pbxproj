@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9BA8931378F794F23AD73326 /* Pods_SwitDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801990F8621B21906E8A5528 /* Pods_SwitDemoTests.framework */; };
+		B21D394B2303FA2800EB3C6C /* DRUserCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */; };
 		B247A3762107002800110864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3752107002800110864 /* AppDelegate.swift */; };
 		B247A37D2107002900110864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B247A37C2107002900110864 /* Assets.xcassets */; };
 		B247A3802107002900110864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247A37E2107002900110864 /* LaunchScreen.storyboard */; };
@@ -30,7 +31,6 @@
 		B26757402300710B0050A03E /* DRFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267573F2300710B0050A03E /* DRFontExtension.swift */; };
 		B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */; };
 		B2CCD55A2302B135000EFF74 /* Pods_SwitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */; };
-		B2CCD55E2302B2BA000EFF74 /* DRJsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCD55D2302B2BA000EFF74 /* DRJsonUtil.swift */; };
 		B2CCD5602302B505000EFF74 /* DRBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */; };
 		F1F63E5E99FC6C368F548BD3 /* Pods_SwitDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27B7B91A0F125A43760AFE /* Pods_SwitDemoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +60,7 @@
 		3D8B87FA2359F8577B52FE60 /* Pods-SwitDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemoUITests/Pods-SwitDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		801990F8621B21906E8A5528 /* Pods_SwitDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwitDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		832804B346B52DD47E064881 /* Pods-SwitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRUserCenter.swift; sourceTree = "<group>"; };
 		B247A3722107002800110864 /* SwitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247A3752107002800110864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B247A37C2107002900110864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		B267573F2300710B0050A03E /* DRFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRFontExtension.swift; sourceTree = "<group>"; };
 		B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSectionConfingModel.swift; sourceTree = "<group>"; };
 		B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2CCD55D2302B2BA000EFF74 /* DRJsonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRJsonUtil.swift; sourceTree = "<group>"; };
 		B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRBaseModel.swift; sourceTree = "<group>"; };
 		E3584F3818AC655FB7D1EDA7 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59FAB851A87DAFEA36E2FFF /* Pods-SwitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemoUITests/Pods-SwitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				B247CC352302957700DDB885 /* DRUserModel.swift */,
+				B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */,
 			);
 			path = "DRUserCenter(用户中心)";
 			sourceTree = "<group>";
@@ -411,7 +412,6 @@
 		B2CCD55C2302B24E000EFF74 /* DRJsonUtil */ = {
 			isa = PBXGroup;
 			children = (
-				B2CCD55D2302B2BA000EFF74 /* DRJsonUtil.swift */,
 				B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */,
 			);
 			path = DRJsonUtil;
@@ -608,23 +608,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -645,12 +638,12 @@
 				B247A3A9210702A800110864 /* DRViewController.swift in Sources */,
 				B2675735230067C80050A03E /* DRCommon.swift in Sources */,
 				B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */,
+				B21D394B2303FA2800EB3C6C /* DRUserCenter.swift in Sources */,
 				B247A3762107002800110864 /* AppDelegate.swift in Sources */,
 				B267572A230061AF0050A03E /* DRMeViewController.swift in Sources */,
 				B247CC2F2302569200DDB885 /* DRMineTableHeadView.swift in Sources */,
 				B247A3B42107077500110864 /* DRTabBarController.swift in Sources */,
 				B247A3AD2107038900110864 /* DRHomeViewController.swift in Sources */,
-				B2CCD55E2302B2BA000EFF74 /* DRJsonUtil.swift in Sources */,
 				B267572C230062B60050A03E /* DRMineTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -818,16 +811,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2SL7M3DUZA;
+				DEVELOPMENT_TEAM = B7LW7462VN;
 				INFOPLIST_FILE = SwitDemo/General/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.healthmall.SwitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.future.SwitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -838,16 +831,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2SL7M3DUZA;
+				DEVELOPMENT_TEAM = B7LW7462VN;
 				INFOPLIST_FILE = SwitDemo/General/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.healthmall.SwitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.future.SwitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

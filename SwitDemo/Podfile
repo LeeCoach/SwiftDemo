@@ -21,6 +21,8 @@ pod 'HandyJSON', '~> 5.0.0'
     #pod 'RxCocoa', '~> 5.0'
 
   # Pods for SwitDemo
+  #无限轮播
+  pod 'FSPagerView', '~> 0.8.3'
 
   target 'SwitDemoTests' do
     inherit! :search_paths

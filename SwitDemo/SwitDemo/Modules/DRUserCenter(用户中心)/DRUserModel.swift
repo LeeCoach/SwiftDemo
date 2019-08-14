@@ -9,7 +9,7 @@
 import UIKit
 import HandyJSON
 
-class DRUserModel: NSObject {
+class DRUserModel: DRBaseModel {
     /** 用户ID */
     var user_id:String?
     /** 隐藏的手机号码 */
@@ -25,95 +25,104 @@ class DRUserModel: NSObject {
     /** 是否实名认证 */
     var is_verify:Bool = false
     
-   
-    
     /** 性别 1男；2女；3未知； */
-//     var sex:userSex
-    
-    /*
+    var sex:userSex = .general
+
     /** 用户类型 1：普通用户 2：老师 3：代理商 4：机构 5:游客 */
-    @property (nonatomic, assign) WLUserType userType;
+    var userType:userType = .visitor
     /** 账号状态 0：禁用 1：启用 */
-    @property (nonatomic, assign) WLVipStatus vipStatus;
+    var vipStatus:vipStatus = .disable
     /** VIP到期时间 */
-    @property (nonatomic, strong) NSString *vipEndTime;
+    var vipEndTime:String?
     /** 总余额 */
-    @property (nonatomic, strong) NSString *balance;
+    var balance:String?
     /** 不可提现 ,ios充值部分*/
-    @property (nonatomic, strong) NSString *noWithdraw;
+    var noWithdraw:String?
     /** 可提现余额 */
-    @property (nonatomic, strong) NSString *totalWithdraw;
+    var totalWithdraw:String?
     /** 总收入 */
-    @property (nonatomic, strong) NSString *incprice;
+    var incprice:String?
     /** 总支出 */
-    @property (nonatomic, strong) NSString *exprice;
+    var exprice:String?
     
     /** 省 */
-    @property (nonatomic, strong) NSString *province;
+    var province:String?
     /** 市 */
-    @property (nonatomic, strong) NSString *city;
+    var city:String?
     /** 区 */
-    @property (nonatomic, strong) NSString *area;
+    var area:String?
     
     ///出生年月日
-    @property (nonatomic, copy) NSString *birth_date;
+    var birth_date:String?
     
     /** 老师粉丝 */
-    @property (nonatomic, strong) NSString *followNum;
+    var followNum:String?
     /** 收藏数 */
-    @property (nonatomic, strong) NSString *collectionNum;
+    var collectionNum:String?
     /** 是否关闭推送 */
-    @property (nonatomic, strong) NSString *isClosePush;
+    var isClosePush:String?
     /** 老师ID */
-    @property (nonatomic, strong) NSString *teacherId;
+    var teacherId:String?
     /** 老师简介 */
-    @property (nonatomic, strong) NSString *abstract;
+    var abstract:String?
     
     
     /** 优惠券数量 */
-    @property (nonatomic, strong) NSString *couponNum;
+    var couponNum:String?
     /** 今日收入 */
-    @property (nonatomic, strong) NSString *todayInc;
+    var todayInc:String?
     /** 总收入 */
-    @property (nonatomic, strong) NSString *totalInc;
+    var totalInc:String?
     /** 剩余发展VIP名额 */
-    @property (nonatomic, strong) NSString *development;
+    var development:String?
     /** 直属下级数量 */
-    @property (nonatomic, strong) NSString *directDevelop;
+    var directDevelop:String?
     /** 间接下级数量 */
-    @property (nonatomic, strong) NSString *indirectDevelop;
+    var indirectDevelop:String?
     
     /** 微信昵称 */
-    @property (nonatomic, strong) NSString *wxName;
+    var wxName:String?
     /** 微信号 */
-    @property (nonatomic, strong) NSString *wechat;
+    var wechat:String?
     /** 未读消息数 */
-    @property (nonatomic, strong) NSString *messages;
+    var messages:String?
     /** 同类型下级人数 老师身份则 下级老师数量 代理商则 */
-    @property (nonatomic, strong) NSString *fans_total;
+    var fans_total:String?
     /** 绑定的上级手机号码 */
-    @property (nonatomic, strong) NSString *superior;
+    var superior:String?
     /** 是否设置了密码 0-否 1-是 */
-    @property (nonatomic, assign) NSInteger has_password;
+    var has_password:Int = 0
     
     /** 直播信息 */
-    @property (nonatomic, strong) NSString *live;
+    var live:String?
     
     /** 开关  ture-隐  false-显示 */
-    @property (nonatomic, assign) BOOL qrc;
+    var qrc:Bool = false
     
     /** 是否新用户七天免费  YES-免费  NO-不免费 */
-    @property (nonatomic, assign) BOOL is_seven_days;
-*/
+    var is_seven_days:Bool = false
+
 }
 
-//enum userSex:Int ,HandyJSONEnum {
-//    case male = 1
-//    case female = 2
-//    case general = 3
-//}
-
-class testModel: DRBaseModel {
-    var name:String?
-    var height:Int = 0
+enum userSex:Int ,HandyJSONEnum {
+    case male = 1
+    case female = 2
+    case general = 3
 }
+
+/** 用户类型 1：普通用户 2：老师 3：代理商 4：机构 5:游客 */
+enum userType:Int ,HandyJSONEnum {
+    case member = 1
+    case teacher = 2
+    case agent = 3
+    case organization = 4
+    case visitor = 5
+}
+
+enum vipStatus:Int ,HandyJSONEnum {
+    case disable = 0
+    case enable = 1
+}
+
+
+

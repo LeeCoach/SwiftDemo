@@ -114,8 +114,22 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
         
 //        let kk = DRJsonUtil.jsonToModel(<#T##jsonStr: String##String#>, <#T##modelType: HandyJSON.Type##HandyJSON.Type#>)
         
-    
+//        let kk:testModel = testModel.jsonToModel("gkjhjvhj", testModel.self) as! testModel
+//        print(kk.name!)
         
+        let userCenter = DRUserCenter.init()
+        userCenter.userLoginEvent(moblie: "fee",
+                                    password: "fee",
+                                    smsKey: "fee",
+                                    code: "fee",
+                                    type: "fee",
+                                    success: { (obj) in
+                                        
+                                        
+                                        
+        }) { (error) in
+            
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

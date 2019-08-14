@@ -61,7 +61,7 @@ class DRTabBarController: UITabBarController {
         let childNav = DRNavigationController(rootViewController: childVC)
         
         //添加控制器
-        addChildViewController(childNav)
+        addChild(childNav)
         
     }
 

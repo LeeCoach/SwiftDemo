@@ -31,7 +31,7 @@ class DRHomeViewController: DRViewController,UITableViewDelegate,UITableViewData
         }
         
         
-        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableViewStyle.plain)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), style: UITableView.Style.plain)
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.view.addSubview(self.tableView)
@@ -51,7 +51,7 @@ class DRHomeViewController: DRViewController,UITableViewDelegate,UITableViewData
         
         if cell == nil
         {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID)
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellID)
         }
         
         cell!.textLabel?.text = self.dataArray![indexPath.row]
