@@ -15,13 +15,11 @@ class DRMineTableViewCell: UITableViewCell {
     var titleLabel:UILabel?
     var detailLabel:UILabel?
     
-    private var cellModel:DRCellConfingModel? = DRCellConfingModel()
-    var mode : DRCellConfingModel {
-        set {
-            self.iconImageView?.image = UIImage.init(imageLiteralResourceName: mode.)
-        }
-        get {
-            
+    var cellModel:DRCellConfingModel! {
+        didSet {
+            self.iconImageView?.image = UIImage.init(named: cellModel.imageName!)
+            self.titleLabel?.text = cellModel.titleString
+            self.detailLabel?.text = cellModel.detailString
         }
     }
         
@@ -29,7 +27,7 @@ class DRMineTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         self.titleLabel = UILabel.init()
         self.titleLabel!.font = UIFont.systemFont(ofSize: 14)
         self.titleLabel!.textColor = UIColor.init(hexString: "#000000")

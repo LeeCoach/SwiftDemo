@@ -11,3 +11,7 @@ import UIKit
 class DRFontExtension: UIFont {
 
 }
+
+func font(size:CGFloat) -> UIFont {
+    return UIFont.systemFont(ofSize: size)
+}
