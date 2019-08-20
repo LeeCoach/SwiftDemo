@@ -9,7 +9,7 @@
 import UIKit
 import HandyJSON
 
-class DRUserModel: DRBaseModel {
+class DRUserModel: DRBaseModel { //DRBaseModel
     /** 用户ID */
     var user_id:String?
     /** 隐藏的手机号码 */
@@ -102,6 +102,9 @@ class DRUserModel: DRBaseModel {
     /** 是否新用户七天免费  YES-免费  NO-不免费 */
     var is_seven_days:Bool = false
 
+//    required init() {
+//
+//    }
 }
 
 enum userSex:Int ,HandyJSONEnum {

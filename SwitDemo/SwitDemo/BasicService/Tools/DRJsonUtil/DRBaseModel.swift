@@ -22,7 +22,7 @@ class DRBaseModel: HandyJSON {
             #endif
             return DRBaseModel()
         }
-        return modelType.deserialize(from: jsonStr) as! DRBaseModel
+        return modelType.deserialize(from: jsonStr,designatedPath: "data") as! DRBaseModel
     }
     
     /**
@@ -55,7 +55,7 @@ class DRBaseModel: HandyJSON {
             #endif
             return DRBaseModel()
         }
-        return modelType.deserialize(from: dictionStr) as! DRBaseModel
+        return modelType.deserialize(from: dictionStr,designatedPath: "data") as! DRBaseModel
     }
     
     /**

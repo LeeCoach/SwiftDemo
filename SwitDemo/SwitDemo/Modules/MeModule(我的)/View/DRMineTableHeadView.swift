@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DRMineTableHeadView: UIView {
     
@@ -23,14 +24,6 @@ class DRMineTableHeadView: UIView {
         label.textColor = UIColor.init(hexString: "#000000")
         return label
     }()
-    var loginBtn:UIButton? = {
-       let btn = UIButton.init(type: .custom)
-        btn.setTitle("立即登录", for: .normal)
-        btn.setTitleColor(UIColor.init(hexString: "#ffe35e"), for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        btn.addTarget(self, action: #selector(clickBtnAction(button:)), for: .touchUpInside)
-        return btn
-    }()
     
     var openVipBtn:UIButton? = {
        let btn = UIButton.init(type: .custom)
@@ -43,9 +36,10 @@ class DRMineTableHeadView: UIView {
     }()
     
     
-    var infoModel:DRCellConfingModel! {
+    var infoModel:DRUserModel! {
         didSet {
-            nameLabel?.text = "这是名字"
+            logoImageView?.kf.setImage(with: URL(string: DRUserCenter.shareManager.userModel!.avatarPath!))
+            nameLabel?.text = DRUserCenter.shareManager.userModel?.nickname
         }
     }
     
@@ -53,8 +47,11 @@ class DRMineTableHeadView: UIView {
         super.init(frame: frame)
         addSubview(logoImageView!)
         addSubview(nameLabel!)
-        addSubview(loginBtn!)
         addSubview(openVipBtn!)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(clickBtnAction))
+        tap.numberOfTapsRequired = 1
+        addGestureRecognizer(tap)
         
         logoImageView?.snp.makeConstraints({ (make) in
             make.top.equalToSuperview().offset(20)
@@ -64,11 +61,6 @@ class DRMineTableHeadView: UIView {
         
         nameLabel?.snp.makeConstraints({ (make) in
             make.left.equalTo((logoImageView?.snp.right)!).offset(10)
-            make.centerY.equalTo(logoImageView!)
-        })
-        
-        loginBtn?.snp.makeConstraints({ (make) in
-            make.left.equalTo((logoImageView?.snp.right)!).offset(50)
             make.centerY.equalTo(logoImageView!)
         })
         
@@ -84,6 +76,18 @@ class DRMineTableHeadView: UIView {
     
     //点击登录按钮
     @objc func clickBtnAction(button:UIButton) -> () {
+        guard DRUserCenter.shareManager.loginStatue == .member else {
+            //需要登录
+            let login = DRLoginViewController.init()
+            let nav = DRNavigationController.init(rootViewController: login)
+            DRInterFaceTool.topViewController()?.present(nav, animated: true, completion: {
+                
+            })
+            return
+        }
+        
+        //进入编辑页面
+        
         
     }
     //开通VIP

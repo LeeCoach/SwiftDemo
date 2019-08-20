@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9BA8931378F794F23AD73326 /* Pods_SwitDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801990F8621B21906E8A5528 /* Pods_SwitDemoTests.framework */; };
 		B21D394B2303FA2800EB3C6C /* DRUserCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */; };
+		B2246AE023063DA00073691B /* DRNetwork+UserCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2246ADF23063DA00073691B /* DRNetwork+UserCenter.swift */; };
+		B22CD92D2304F9D000014531 /* DRNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22CD92C2304F9D000014531 /* DRNetwork.swift */; };
 		B247A3762107002800110864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3752107002800110864 /* AppDelegate.swift */; };
 		B247A37D2107002900110864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B247A37C2107002900110864 /* Assets.xcassets */; };
 		B247A3802107002900110864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247A37E2107002900110864 /* LaunchScreen.storyboard */; };
@@ -32,6 +34,9 @@
 		B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */; };
 		B2CCD55A2302B135000EFF74 /* Pods_SwitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */; };
 		B2CCD5602302B505000EFF74 /* DRBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */; };
+		B2DED2A6230A3CB10051FB8C /* DRKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2A5230A3CB10051FB8C /* DRKeyConstant.swift */; };
+		B2DED2A9230A53360051FB8C /* DRLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2A8230A53360051FB8C /* DRLoginViewController.swift */; };
+		B2DED2AC230A71920051FB8C /* DRInterFaceTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2AB230A71920051FB8C /* DRInterFaceTool.swift */; };
 		F1F63E5E99FC6C368F548BD3 /* Pods_SwitDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27B7B91A0F125A43760AFE /* Pods_SwitDemoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +66,8 @@
 		801990F8621B21906E8A5528 /* Pods_SwitDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwitDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		832804B346B52DD47E064881 /* Pods-SwitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRUserCenter.swift; sourceTree = "<group>"; };
+		B2246ADF23063DA00073691B /* DRNetwork+UserCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DRNetwork+UserCenter.swift"; sourceTree = "<group>"; };
+		B22CD92C2304F9D000014531 /* DRNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRNetwork.swift; sourceTree = "<group>"; };
 		B247A3722107002800110864 /* SwitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247A3752107002800110864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B247A37C2107002900110864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +98,9 @@
 		B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSectionConfingModel.swift; sourceTree = "<group>"; };
 		B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRBaseModel.swift; sourceTree = "<group>"; };
+		B2DED2A5230A3CB10051FB8C /* DRKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRKeyConstant.swift; sourceTree = "<group>"; };
+		B2DED2A8230A53360051FB8C /* DRLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRLoginViewController.swift; sourceTree = "<group>"; };
+		B2DED2AB230A71920051FB8C /* DRInterFaceTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRInterFaceTool.swift; sourceTree = "<group>"; };
 		E3584F3818AC655FB7D1EDA7 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E59FAB851A87DAFEA36E2FFF /* Pods-SwitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwitDemoUITests/Pods-SwitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +156,31 @@
 				0A27B7B91A0F125A43760AFE /* Pods_SwitDemoUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2246ADE23063D5E0073691B /* userCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B2246ADF23063DA00073691B /* DRNetwork+UserCenter.swift */,
+			);
+			path = userCenter;
+			sourceTree = "<group>";
+		};
+		B22CD92A2304F97C00014531 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B2246ADE23063D5E0073691B /* userCenter */,
+				B22CD92B2304F9B100014531 /* Base */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B22CD92B2304F9B100014531 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B22CD92C2304F9D000014531 /* DRNetwork.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		B247A3692107002800110864 = {
@@ -258,6 +293,7 @@
 		B247CC342302955100DDB885 /* DRUserCenter(用户中心) */ = {
 			isa = PBXGroup;
 			children = (
+				B2DED2A7230A531D0051FB8C /* Login(登录) */,
 				B247CC352302957700DDB885 /* DRUserModel.swift */,
 				B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */,
 			);
@@ -323,6 +359,7 @@
 		B267572D2300638A0050A03E /* BasicService */ = {
 			isa = PBXGroup;
 			children = (
+				B22CD92A2304F97C00014531 /* Network */,
 				B2CCD55B2302B242000EFF74 /* Tools */,
 				B267573623006F970050A03E /* Category */,
 				B267572E2300638A0050A03E /* Common */,
@@ -364,6 +401,7 @@
 				B247A37E2107002900110864 /* LaunchScreen.storyboard */,
 				B247A3812107002900110864 /* Info.plist */,
 				B2675734230067C80050A03E /* DRCommon.swift */,
+				B2DED2A5230A3CB10051FB8C /* DRKeyConstant.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -404,6 +442,7 @@
 		B2CCD55B2302B242000EFF74 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B2DED2AA230A715B0051FB8C /* InterfaceTool(界面工具类) */,
 				B2CCD55C2302B24E000EFF74 /* DRJsonUtil */,
 			);
 			path = Tools;
@@ -415,6 +454,22 @@
 				B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */,
 			);
 			path = DRJsonUtil;
+			sourceTree = "<group>";
+		};
+		B2DED2A7230A531D0051FB8C /* Login(登录) */ = {
+			isa = PBXGroup;
+			children = (
+				B2DED2A8230A53360051FB8C /* DRLoginViewController.swift */,
+			);
+			path = "Login(登录)";
+			sourceTree = "<group>";
+		};
+		B2DED2AA230A715B0051FB8C /* InterfaceTool(界面工具类) */ = {
+			isa = PBXGroup;
+			children = (
+				B2DED2AB230A71920051FB8C /* DRInterFaceTool.swift */,
+			);
+			path = "InterfaceTool(界面工具类)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -628,16 +683,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CCD5602302B505000EFF74 /* DRBaseModel.swift in Sources */,
+				B2DED2AC230A71920051FB8C /* DRInterFaceTool.swift in Sources */,
 				B2675733230063A00050A03E /* DRCellConfingModel.swift in Sources */,
 				B247A3B821070B7500110864 /* DRToolViewController.swift in Sources */,
 				B247CC362302957700DDB885 /* DRUserModel.swift in Sources */,
 				B267573E230070E80050A03E /* DRColorExtension.swift in Sources */,
 				B247A3A72107028700110864 /* DRNavigationController.swift in Sources */,
+				B2DED2A9230A53360051FB8C /* DRLoginViewController.swift in Sources */,
 				B247A3B621070B5400110864 /* DRMessageViewController.swift in Sources */,
 				B26757402300710B0050A03E /* DRFontExtension.swift in Sources */,
 				B247A3A9210702A800110864 /* DRViewController.swift in Sources */,
+				B2DED2A6230A3CB10051FB8C /* DRKeyConstant.swift in Sources */,
 				B2675735230067C80050A03E /* DRCommon.swift in Sources */,
+				B22CD92D2304F9D000014531 /* DRNetwork.swift in Sources */,
 				B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */,
+				B2246AE023063DA00073691B /* DRNetwork+UserCenter.swift in Sources */,
 				B21D394B2303FA2800EB3C6C /* DRUserCenter.swift in Sources */,
 				B247A3762107002800110864 /* AppDelegate.swift in Sources */,
 				B267572A230061AF0050A03E /* DRMeViewController.swift in Sources */,

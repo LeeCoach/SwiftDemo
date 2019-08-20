@@ -60,7 +60,7 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
         }
         
         headView = DRMineTableHeadView.init(frame: CGRect(x: 0, y: 0, width: DRScreen_Width, height: 100)) as DRMineTableHeadView
-//        headView.
+        headView?.infoModel = DRUserCenter.shareManager.userModel
         tableView.tableHeaderView = headView
         
         self.tableView.register(DRMineTableViewCell.self, forCellReuseIdentifier: "DRMineTableViewCell")
@@ -111,25 +111,6 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
 
         self.dataArray = [section0,section1,section2,section3]
         
-        
-//        let kk = DRJsonUtil.jsonToModel(<#T##jsonStr: String##String#>, <#T##modelType: HandyJSON.Type##HandyJSON.Type#>)
-        
-//        let kk:testModel = testModel.jsonToModel("gkjhjvhj", testModel.self) as! testModel
-//        print(kk.name!)
-        
-        let userCenter = DRUserCenter.init()
-        userCenter.userLoginEvent(moblie: "fee",
-                                    password: "fee",
-                                    smsKey: "fee",
-                                    code: "fee",
-                                    type: "fee",
-                                    success: { (obj) in
-                                        
-                                        
-                                        
-        }) { (error) in
-            
-        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

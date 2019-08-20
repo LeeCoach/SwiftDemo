@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+
+func DRLog<T>(_ message:T,file:String = #file,function:String = #function,line:Int = #line) {
+    #if DEBUG
+        let fileName = (file as NSString).lastPathComponent
+    print("**************** \(fileName) ********************** \n----->>>>>>函数名 : \(function) \n----->>>>>>行号 : \(line) \n----->>>>>>输出 : \(message)\n")
+    #endif
+}
+
 // 合并宽度与高度
 let DRScreen_Width = UIScreen.main.bounds.size.width
 let DRScreen_Height = UIScreen.main.bounds.size.height

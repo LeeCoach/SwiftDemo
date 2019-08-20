@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        DRUserCenter.shareManager.getUserSession()
+        
         let tabBarVC = DRTabBarController()
         self.window?.rootViewController = tabBarVC
         
