@@ -19,6 +19,8 @@ pod 'HandyJSON', '~> 5.0.0'
     #是一个可以帮助我们简化异步编程的框架,KVO，异步操作 和 流 全部被统一成抽象序列
     #pod 'RxSwift', '~> 5.0'
     #pod 'RxCocoa', '~> 5.0'
+    # HUD提示窗
+    pod 'PKHUD', '~> 5.3.0'
 
   # Pods for SwitDemo
   #无限轮播

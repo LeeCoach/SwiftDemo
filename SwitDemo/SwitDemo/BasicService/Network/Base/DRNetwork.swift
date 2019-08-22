@@ -9,10 +9,17 @@
 import UIKit
 import Foundation
 import Alamofire
+import HandyJSON
 
-class BaseNetworkModel:DRBaseModel  {
-    var code:Int = 0
+class BaseNetworkModel:HandyJSON  {
+    var code:String?
     var msg:String?
+    var session:String?
+    var data:Any? //<T>?
+    
+    required init() {
+        
+    }
 }
 
 /// 声明闭包回调
@@ -57,10 +64,9 @@ class DRNetwork: NSObject {
             case .success(let json):
                 
                 let dict = json as! NSDictionary
-                let code = dict.object(forKey: "code") as! String
-                let errorMsg = dict.object(forKey: "msg") as! String
-                DRLog(code)
-                switch(code) {
+                let baseModel:BaseNetworkModel = JSONDeserializer.deserializeFrom(dict: dict)!
+           
+                switch(baseModel.code) {
                 case "200":
                     success(dict)
                 case "1001": // token失效，请重新登录
@@ -68,8 +74,8 @@ class DRNetwork: NSObject {
                 case "1005": //新设备登录，逼退
                     NotificationCenter.default.post(name: NSNotification.Name(kNotification_logoutOffline), object: nil)
                 default:
-                    DRLog("获取数据异常 errorMsg:\(errorMsg)")
-                    faild(errorMsg)
+                    DRLog("获取数据异常 errorMsg:\(baseModel.msg ?? "")")
+                    faild(baseModel.msg)
                 }
                 
             case .failure(let error):

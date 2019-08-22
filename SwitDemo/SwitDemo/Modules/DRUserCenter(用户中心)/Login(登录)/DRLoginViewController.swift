@@ -26,26 +26,158 @@ class DRLoginViewController: DRViewController {
     }
     
     @objc func loginBtnAction() {
-        
-        guard (mobileTF?.text!.count)! > 0 else {
-            
+
+        guard mobileTF?.text != nil else {
+            DRHUD.showInfo(title: "请输入手机号码")
             return
         }
         
+        if viewType == .code {
+            guard codeTF?.text != nil else {
+                DRHUD.showInfo(title: "请输入验证码")
+                return
+            }
+        } else {
+            guard passwordTF?.text != nil else {
+                DRHUD.showInfo(title: "请输入密码")
+                return
+            }
+        }
+        
+        DRHUD.show()
+        view.endEditing(true)
+        if viewType == .code {
+            
+            loginBtn?.isEnabled = false
+            DRNetwork.getSmsCode(mobile: (mobileTF?.text!)!, type: "1", code: codeTF?.text, act: "2", { (response) in
+                
+                let dict = response as! NSDictionary
+                let data = dict["data"] as! NSDictionary
+                if let smsKey = data["smsKey"] {
+                    
+                    DRNetwork.userLogin(moblie: self.mobileTF!.text!, password: nil, smsKey: smsKey as? String, code: nil, type: "1", { (obj) in
+                        DRHUD.hide()
+                        self.requestUserDetails()
+                        self.loginBtn?.isEnabled = true
+                        
+                    }, { (errorMsg) in
+                        DRHUD.showError(title: errorMsg,subtitle: nil)
+                        self.loginBtn?.isEnabled = true
+                    })
+                    
+                } else {
+                    DRHUD.showError(title: "验证失败",subtitle: nil)
+                    self.loginBtn?.isEnabled = true
+                }
+                
+            }) { (errorMsg) in
+                DRHUD.showError(title: errorMsg, subtitle: nil)
+                self.loginBtn?.isEnabled = true
+            }
+            
+        } else { //密码登录
+            
+            loginBtn?.isEnabled = false
+            DRNetwork.userLogin(moblie: mobileTF!.text!, password: passwordTF?.text, smsKey: nil, code: nil, type: "5", { (obj) in
+                DRHUD.hide()
+                self.requestUserDetails()
+                self.loginBtn?.isEnabled = true
+                
+            }) { (errorMsg) in
+                DRHUD.showError(title: errorMsg, subtitle: nil)
+                self.loginBtn?.isEnabled = true
+            }
+        }
     }
     
     @objc func changeBtnAction() {
         
         if viewType == .code {
             viewType = .password
-            self.changeBtn!.setTitle("使用密码登录", for: .normal)
+            self.changeBtn!.setTitle("使用验证码登录", for: .normal)
+            self.codeTF?.isHidden = true
+            self.passwordTF?.isHidden = false
+            
         } else {
             viewType = .code
-            self.changeBtn!.setTitle("使用验证码登录", for: .normal)
+            self.changeBtn!.setTitle("使用密码登录", for: .normal)
+            self.codeTF?.isHidden = false
+            self.passwordTF?.isHidden = true
         }
     }
     
+    @objc func getVerificationCode() {
+        
+        guard mobileTF?.text != nil else {
+            DRHUD.showInfo(title: "请输入手机号码")
+            return
+        }
+        
+        DRNetwork.getSmsCode(mobile: mobileTF!.text!, type: "1", code: nil, act: "1", { (obj) in
+            
+            var timeout = 60
+            let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
+            timer.schedule(wallDeadline: .now(), repeating: .seconds(1))
+            timer.setEventHandler {
+                timeout = timeout - 1
+                
+                if timeout <= 0 {
+                    timer.cancel()
+                    DispatchQueue.main.async {
+                        // Run async code on the main queue
+                        self.codeBtn?.setTitle("重新获取", for: .normal)
+                        self.codeBtn?.isUserInteractionEnabled = true
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        // Run async code on the main queue
+                        self.codeBtn?.setTitle("\(timeout)s", for: .normal)
+                        self.codeBtn?.isUserInteractionEnabled = false
+                    }
+                }
+                
+            }
+            timer.resume()
+            
+        }) { (errorMsg) in
+            DRLog(errorMsg)
+        }
+    }
+    
+    // MARK: 登录成功后，重新获取用户详情
+    private func requestUserDetails() {
+        
+        DRUserCenter.shareManager.userDetails(success: { (obj) in
+            DRHUD.showSuccess(title: "登录成功", subtitle: "准备关闭页面")
+            DRUserCenter.shareManager.loginSuccessCall!(obj)
+            self.dismiss(animated: true, completion: {
+                NotificationCenter.default.post(name: NSNotification.Name(kNotification_loginOnline), object: self)
+            })
+        }) { (errorMsg) in
+            DRHUD.showError(title: errorMsg, subtitle: nil)
+        }
+    }
+    
+    @objc func clickBackBtnAction() {
+        self.dismiss(animated: true) {
+            DRUserCenter.shareManager.loginFaileCall?("取消登录")
+        }
+    }
+    
+    @objc func lookPassworkBtnClick(btn:UIButton) {
+        passwordTF?.isEnabled = false
+        passwordTF?.isSecureTextEntry = btn.isSelected
+        btn.isSelected = !btn.isSelected
+        passwordTF?.isEnabled = true
+        passwordTF?.becomeFirstResponder()
+    }
+    
     func setUI() {
+        
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "user_close"), for: .normal)
+        btn.addTarget(self, action: #selector(clickBackBtnAction), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btn)
         
         self.view.addSubview(mobileTF!)
         view.addSubview(codeTF!)
@@ -74,16 +206,16 @@ class DRLoginViewController: DRViewController {
             make.height.equalTo(30)
         })
         
-        changeBtn?.snp.makeConstraints({ (make) in
-            make.top.equalTo((mobileTF?.snp.bottom)!).offset(60)
-            make.left.equalTo((mobileTF?.snp.left)!)
-        })
-        
         loginBtn?.snp.makeConstraints({ (make) in
             make.top.equalTo((mobileTF?.snp.bottom)!).offset(80)
             make.left.equalToSuperview().offset(40)
             make.right.equalToSuperview().offset(-40)
             make.height.equalTo(40)
+        })
+        
+        changeBtn?.snp.makeConstraints({ (make) in
+            make.top.equalTo((loginBtn?.snp.bottom)!).offset(20)
+            make.left.equalTo((mobileTF?.snp.left)!)
         })
     }
     
@@ -92,11 +224,30 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入手机号码"
-        tf.textColor = UIColor.init(hexString: "#f2f2f2")
+        tf.textColor = UIColor.init(hexString: "#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
-        tf.clearButtonMode = UITextField.ViewMode.whileEditing
+        tf.clearButtonMode = .whileEditing
+        tf.keyboardType = .numberPad
+        
+        let image = UIImage.init(named: "login_mobile")
+        let imageView = UIImageView.init(image: image)
+        imageView.frame = CGRect(x: 0, y: 0, width: image?.size.width ?? 20, height: image?.size.height ?? 20)
+        tf.leftView = imageView
+        tf.leftViewMode = .always
         
         return tf;
+    }()
+    
+    lazy var codeBtn:UIButton? = {
+        let btn = UIButton.init(type: .custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
+        btn.setTitle("获取验证码", for: .normal)
+        btn.setTitleColor(UIColor.init(hexString: "#666666"), for: .normal)
+        btn.setTitleColor(UIColor.init(hexString: "#666666"), for: .disabled)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 9)
+        btn.backgroundColor = UIColor.init(hexString: "#f2f2f2")
+        btn.addTarget(self, action: #selector(getVerificationCode), for: .touchUpInside)
+        return btn
     }()
     
     lazy var codeTF:UITextField? = {
@@ -104,10 +255,18 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入验证码"
-        tf.textColor = UIColor.init(hexString: "#f2f2f2")
+        tf.textColor = UIColor.init(hexString: "#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
-        tf.clearButtonMode = UITextField.ViewMode.whileEditing
+        tf.clearButtonMode = .whileEditing
+        tf.keyboardType = .numberPad
+        tf.rightView = self.codeBtn
+        tf.rightViewMode = .always
         
+        let image = UIImage.init(named: "login_security_code")
+        let imageView = UIImageView.init(image: image)
+        imageView.frame = CGRect(x: 0, y: 0, width: image?.size.width ?? 20, height: image?.size.height ?? 20)
+        tf.leftView = imageView
+        tf.leftViewMode = .always
         return tf;
     }()
     
@@ -116,9 +275,26 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入密码"
-        tf.textColor = UIColor.init(hexString: "#f2f2f2")
+        tf.textColor = UIColor.init(hexString: "#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
-        tf.clearButtonMode = UITextField.ViewMode.whileEditing
+        tf.clearButtonMode = .whileEditing
+//        tf.keyboardType = .numberPad
+        tf.isSecureTextEntry = true
+        tf.isHidden = true
+        
+        let image = UIImage.init(named: "login_lock")
+        let imageView = UIImageView.init(image: image)
+        imageView.frame = CGRect(x: 0, y: 0, width: image?.size.width ?? 26, height: image?.size.height ?? 26)
+        tf.leftView = imageView
+        tf.leftViewMode = .always
+        
+        let btn = UIButton(type: .custom)
+        btn.frame = CGRect(x: 0, y: 0, width: 26, height: 26)
+        btn.setImage(UIImage(named: "password_nolook"), for: .normal)
+        btn.setImage(UIImage(named: "password_look"), for: .selected)
+        btn.addTarget(self, action: #selector(lookPassworkBtnClick(btn:)), for: .touchUpInside)
+        tf.rightView = btn
+        tf.rightViewMode = .always
         return tf;
     }()
     

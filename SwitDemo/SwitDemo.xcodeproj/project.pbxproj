@@ -11,6 +11,8 @@
 		B21D394B2303FA2800EB3C6C /* DRUserCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */; };
 		B2246AE023063DA00073691B /* DRNetwork+UserCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2246ADF23063DA00073691B /* DRNetwork+UserCenter.swift */; };
 		B22CD92D2304F9D000014531 /* DRNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22CD92C2304F9D000014531 /* DRNetwork.swift */; };
+		B23BC7C2230BE68E00CB7830 /* DRHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23BC7C1230BE68E00CB7830 /* DRHUD.swift */; };
+		B23BC7C4230BF95900CB7830 /* Pods_SwitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B23BC7C3230BF95900CB7830 /* Pods_SwitDemo.framework */; };
 		B247A3762107002800110864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247A3752107002800110864 /* AppDelegate.swift */; };
 		B247A37D2107002900110864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B247A37C2107002900110864 /* Assets.xcassets */; };
 		B247A3802107002900110864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247A37E2107002900110864 /* LaunchScreen.storyboard */; };
@@ -32,8 +34,8 @@
 		B267573E230070E80050A03E /* DRColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267573D230070E80050A03E /* DRColorExtension.swift */; };
 		B26757402300710B0050A03E /* DRFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267573F2300710B0050A03E /* DRFontExtension.swift */; };
 		B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */; };
-		B2CCD55A2302B135000EFF74 /* Pods_SwitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */; };
 		B2CCD5602302B505000EFF74 /* DRBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */; };
+		B2D6CE22230D1DED0022FE8B /* DRSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D6CE21230D1DED0022FE8B /* DRSettingViewController.swift */; };
 		B2DED2A6230A3CB10051FB8C /* DRKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2A5230A3CB10051FB8C /* DRKeyConstant.swift */; };
 		B2DED2A9230A53360051FB8C /* DRLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2A8230A53360051FB8C /* DRLoginViewController.swift */; };
 		B2DED2AC230A71920051FB8C /* DRInterFaceTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DED2AB230A71920051FB8C /* DRInterFaceTool.swift */; };
@@ -68,6 +70,8 @@
 		B21D394A2303FA2800EB3C6C /* DRUserCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRUserCenter.swift; sourceTree = "<group>"; };
 		B2246ADF23063DA00073691B /* DRNetwork+UserCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DRNetwork+UserCenter.swift"; sourceTree = "<group>"; };
 		B22CD92C2304F9D000014531 /* DRNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRNetwork.swift; sourceTree = "<group>"; };
+		B23BC7C1230BE68E00CB7830 /* DRHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRHUD.swift; sourceTree = "<group>"; };
+		B23BC7C3230BF95900CB7830 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247A3722107002800110864 /* SwitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B247A3752107002800110864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B247A37C2107002900110864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		B278A23E2300FE1000229EA1 /* DRSectionConfingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSectionConfingModel.swift; sourceTree = "<group>"; };
 		B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_SwitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CCD55F2302B505000EFF74 /* DRBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRBaseModel.swift; sourceTree = "<group>"; };
+		B2D6CE21230D1DED0022FE8B /* DRSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRSettingViewController.swift; sourceTree = "<group>"; };
 		B2DED2A5230A3CB10051FB8C /* DRKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRKeyConstant.swift; sourceTree = "<group>"; };
 		B2DED2A8230A53360051FB8C /* DRLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRLoginViewController.swift; sourceTree = "<group>"; };
 		B2DED2AB230A71920051FB8C /* DRInterFaceTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRInterFaceTool.swift; sourceTree = "<group>"; };
@@ -110,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2CCD55A2302B135000EFF74 /* Pods_SwitDemo.framework in Frameworks */,
+				B23BC7C4230BF95900CB7830 /* Pods_SwitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +154,7 @@
 		71F5E5AEE232987345D3F402 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B23BC7C3230BF95900CB7830 /* Pods_SwitDemo.framework */,
 				B2CCD5592302B135000EFF74 /* Pods_SwitDemo.framework */,
 				B247CC372302A13100DDB885 /* Pods_SwitDemo.framework */,
 				E3584F3818AC655FB7D1EDA7 /* Pods_SwitDemo.framework */,
@@ -181,6 +187,22 @@
 				B22CD92C2304F9D000014531 /* DRNetwork.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B23BC7BF230BE66900CB7830 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B23BC7C0230BE67200CB7830 /* DRHud */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		B23BC7C0230BE67200CB7830 /* DRHud */ = {
+			isa = PBXGroup;
+			children = (
+				B23BC7C1230BE68E00CB7830 /* DRHUD.swift */,
+			);
+			path = DRHud;
 			sourceTree = "<group>";
 		};
 		B247A3692107002800110864 = {
@@ -321,6 +343,7 @@
 		B2675724230061AF0050A03E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B2D6CE21230D1DED0022FE8B /* DRSettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -359,6 +382,7 @@
 		B267572D2300638A0050A03E /* BasicService */ = {
 			isa = PBXGroup;
 			children = (
+				B23BC7BF230BE66900CB7830 /* UIKit */,
 				B22CD92A2304F97C00014531 /* Network */,
 				B2CCD55B2302B242000EFF74 /* Tools */,
 				B267573623006F970050A03E /* Category */,
@@ -666,13 +690,30 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwitDemo/Pods-SwitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -693,8 +734,10 @@
 				B247A3B621070B5400110864 /* DRMessageViewController.swift in Sources */,
 				B26757402300710B0050A03E /* DRFontExtension.swift in Sources */,
 				B247A3A9210702A800110864 /* DRViewController.swift in Sources */,
+				B2D6CE22230D1DED0022FE8B /* DRSettingViewController.swift in Sources */,
 				B2DED2A6230A3CB10051FB8C /* DRKeyConstant.swift in Sources */,
 				B2675735230067C80050A03E /* DRCommon.swift in Sources */,
+				B23BC7C2230BE68E00CB7830 /* DRHUD.swift in Sources */,
 				B22CD92D2304F9D000014531 /* DRNetwork.swift in Sources */,
 				B278A23F2300FE1100229EA1 /* DRSectionConfingModel.swift in Sources */,
 				B2246AE023063DA00073691B /* DRNetwork+UserCenter.swift in Sources */,

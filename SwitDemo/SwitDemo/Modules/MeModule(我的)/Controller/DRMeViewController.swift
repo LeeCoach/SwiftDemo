@@ -39,11 +39,24 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        requestUserDetails()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func requestUserDetails() {
+        
+        DRUserCenter.shareManager.userDetails(success: { (obj) in
+            self.dataArray.removeAll()
+            self.setGroup()
+            self.headView?.infoModel = DRUserCenter.shareManager.userModel
+            self.tableView.reloadData()
+        }) { (errorMsg) in
+            DRHUD.showError(title: errorMsg, subtitle: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -139,6 +152,24 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
         headVeiw!.contentView.backgroundColor = UIColor.init(hexString: "#f2f2f2")
         
         return headVeiw
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let group:DRSectionConfingModel = self.dataArray[indexPath.section] as! DRSectionConfingModel
+        let cellModel = group.sectionItems![indexPath.row] as? DRCellConfingModel
+        switch cellModel?.titleString {
+        case kMyCollection:
+            DRLog("dfsdf")
+        case kSettingUp:
+            DRLog("dfsdf")
+            let vc = DRSettingViewController.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            DRLog("点击了其它")
+        }
+        
     }
 
 }

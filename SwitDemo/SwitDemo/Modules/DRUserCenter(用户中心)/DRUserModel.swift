@@ -26,12 +26,12 @@ class DRUserModel: DRBaseModel { //DRBaseModel
     var is_verify:Bool = false
     
     /** 性别 1男；2女；3未知； */
-    var sex:userSex = .general
+    var sex:DRUserSex = .general
 
     /** 用户类型 1：普通用户 2：老师 3：代理商 4：机构 5:游客 */
-    var userType:userType = .visitor
+    var userType:DRUserType = .visitor
     /** 账号状态 0：禁用 1：启用 */
-    var vipStatus:vipStatus = .disable
+    var vipStatus:DRVipStatus = .disable
     /** VIP到期时间 */
     var vipEndTime:String?
     /** 总余额 */
@@ -107,22 +107,22 @@ class DRUserModel: DRBaseModel { //DRBaseModel
 //    }
 }
 
-enum userSex:Int ,HandyJSONEnum {
+enum DRUserSex:Int ,HandyJSONEnum {
     case male = 1
     case female = 2
     case general = 3
 }
 
 /** 用户类型 1：普通用户 2：老师 3：代理商 4：机构 5:游客 */
-enum userType:Int ,HandyJSONEnum {
-    case member = 1
-    case teacher = 2
-    case agent = 3
-    case organization = 4
-    case visitor = 5
+enum DRUserType:String ,HandyJSONEnum {
+    case member = "1"
+    case teacher = "2"
+    case agent = "3"
+    case organization = "4"
+    case visitor = "5"
 }
 
-enum vipStatus:Int ,HandyJSONEnum {
+enum DRVipStatus:Int ,HandyJSONEnum {
     case disable = 0
     case enable = 1
 }

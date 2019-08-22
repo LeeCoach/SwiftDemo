@@ -10,23 +10,20 @@ import UIKit
 import HandyJSON
 
 
-/// 声明闭包
-typealias loginSuccess = () -> ()
-typealias loginFaile = (_ errorMsg:String) -> ()
-
 class DRUserCenter: NSObject {
     
     /// 默认未登录
-    var loginStatue:DRLoginState = .not
+    var loginStatue:DRLoginState = .Offline
     
     var userModel:DRUserModel?
     
     var token:String?
     
-    var loginSuccessCall:loginSuccess?
-    var loginFaileCall:loginFaile?
     
-    /// 单例方法
+    var loginSuccessCall:successBlock?
+    var loginFaileCall:faildBlock?
+    
+    // MARK:  单例方法
     static let shareManager: DRUserCenter = {
         let instance = DRUserCenter()
         //do something
@@ -37,7 +34,7 @@ class DRUserCenter: NSObject {
         return instance
     } ()
     
-    ///获取session
+    // MARK: 获取session
     @objc func getUserSession() -> Void {
         
         let uuid = UIDevice.current.identifierForVendor?.uuidString
@@ -62,20 +59,26 @@ class DRUserCenter: NSObject {
                 DRLog("获取到sesstion: \(DRUserCenter.shareManager.token ?? "为空")")
                 
                 ///拿到sesstion后，获取用户详情
-                self.userDetails(success: {
+//                self.userDetails(success: {
+//
+//                }, faile: { (msg) in
+//
+//                })
+                self.userDetails(success: { (obj) in
                     
-                }, faile: { (msg) in
+                }, faile: { (errorMsg) in
                     
                 })
             }
         }) { (error) in
-            
+            DRLog(error)
         }
-        
     }
     
-    ///获取用户详情
-    func userDetails(success:loginSuccess?,faile:loginFaile?) -> Void {
+    
+    
+    // MARK: 获取用户详情
+    func userDetails(success:@escaping successBlock,faile:@escaping faildBlock) -> Void {
         
         guard token != nil else {
             DRLog("token不能为空")
@@ -85,21 +88,23 @@ class DRUserCenter: NSObject {
         DRNetwork.getUserDetails({ (objData) in
             let userModel = objData as? DRUserModel
             self.userModel = userModel
-            let userType = self.userModel?.userType
-//            switch  userType {
-//            case :
-//                loginStatue = .member
-//
-//            default:
-//                loginStatue = .vistor
-//            }
+            let userType:DRUserType = self.userModel!.userType
             
+            switch userType {
+            case .visitor:
+                self.loginStatue = .Offline
+            default:
+                self.loginStatue = .Online
+            }
+            success(objData)
+        
         }) { (errorMsg) in
-            print(errorMsg!)
+            DRLog(errorMsg!)
+            faile(errorMsg)
         }
     }
-    //登录
-    func userLoginEvent(moblie:String,password:String?,smsKey:String?,code:String?,type:String?,success:@escaping loginSuccess,faile:@escaping loginFaile) {
+    // MARK: 登录
+    func userLoginEvent(moblie:String,password:String?,smsKey:String?,code:String?,type:String?,success:@escaping successBlock,faile:@escaping faildBlock) {
         
         DRNetwork.userLogin(moblie: moblie, password: password, smsKey: smsKey, code: code, type: type, { (obj) in
 
@@ -110,13 +115,13 @@ class DRUserCenter: NSObject {
                 DRLog("登录成功 获取到sesstion: \(DRUserCenter.shareManager.token ?? "为空")")
 
                 ///拿到sesstion后，获取用户详情
-                self.userDetails(success: {
+                self.userDetails(success: { (data) in
                     
-                }, faile: { (msg) in
+                }, faile: { (errorMsg) in
                     
                 })
                 
-                success()
+                success(obj)
             }
 
         }) { (errorMsg) in
@@ -124,51 +129,73 @@ class DRUserCenter: NSObject {
         }
     }
     
-    ///退出登录
-    func userLogout(_ success: @escaping ()->(), faile: @escaping (_ errorMsg:String?)->()) -> Void {
+    // MARK: 退出登录
+    func userLogout(success:@escaping successBlock, faile:@escaping faildBlock) -> Void {
         
-        
-        
-        
+        DRNetwork.userLogout({ (obj) in
+            success(obj)
+            self.loginStatue = .Offline
+        }) { (errorMsg) in
+            faile(errorMsg)
+        }
     }
     
-    /// 验证用户是否登录，是否游客身份
-    ///
-    /// - Parameters:
-    ///   - success: 成功回调
-    ///   - faile: 失败回调
-    func verifyUserLogin(_ success: @escaping ()->(), faile: @escaping (_ errorMsg:String?)->()) -> Void {
-    
+    // MARK: 验证用户是否登录，是否游客身份
+    func verifyUserLogin(success:@escaping successBlock,faile:@escaping faildBlock) -> Void {
+        
+        let userType:DRUserType = self.userModel!.userType
+        if userType == .visitor {
+            self.showLoginView(success: success, faile: faile)
+        } else {
+            success(self.userModel)
+        }
         
     }
     
     // MARK: 弹出登录框
-    func showLoginView(success:loginSuccess?,faile:loginFaile?) -> Void {
+    func showLoginView(success:@escaping successBlock,faile:@escaping faildBlock) -> Void {
         
+        self.loginSuccessCall = success
+        self.loginFaileCall = faile
         
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    // MARK: 通知重新登录
-    @objc func needReuseLogin(_ success: @escaping ()->(), faile: @escaping (_ errorMsg:String?)->()) -> Void {
+        let currentVC = DRInterFaceTool.topViewController()
+        if (currentVC?.isKind(of: DRLoginViewController.self))! {
+            return
+        }
         
-        loginStatue = .vistor
-        ///拿到sesstion后，获取用户详情
-        self.userDetails(success: {
-            
-        }, faile: { (msg) in
+        let loginVC = DRLoginViewController.init()
+        let navVC = UINavigationController(rootViewController: loginVC)
+        DRInterFaceTool.topViewController()?.present(navVC, animated: true, completion: {
             
         })
         
-        self.showLoginView(success: {
+    }
+    
+    
+    
+    // MARK: 通知重新登录
+    @objc func needReuseLogin(success:@escaping successBlock, faile:@escaping faildBlock) -> Void {
+        
+        loginStatue = .Offline
+        ///拿到sesstion后，获取用户详情
+        self.userDetails(success: { (data) in
             
-        }) { (errormsg) in
+        }, faile: { (errorMsg) in
+            
+        })
+        
+        DRInterFaceTool.topViewController()?.navigationController?.popToRootViewController(animated: false)
+        
+        self.showLoginView(success: { (obj) in
+            
+        }) { (errorMsg) in
             
         }
-        
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
@@ -179,7 +206,6 @@ class DRUserCenter: NSObject {
 /// - vistor: 游客
 /// - member: 已登录
 enum DRLoginState:Int ,HandyJSONEnum {
-    case not = 0
-    case vistor = 1
-    case member = 2
+    case Offline = 1
+    case Online = 2
 }

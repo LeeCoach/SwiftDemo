@@ -76,13 +76,16 @@ class DRMineTableHeadView: UIView {
     
     //点击登录按钮
     @objc func clickBtnAction(button:UIButton) -> () {
-        guard DRUserCenter.shareManager.loginStatue == .member else {
+        guard DRUserCenter.shareManager.loginStatue == .Online else {
             //需要登录
-            let login = DRLoginViewController.init()
-            let nav = DRNavigationController.init(rootViewController: login)
-            DRInterFaceTool.topViewController()?.present(nav, animated: true, completion: {
+            DRUserCenter.shareManager.showLoginView(success: { (obj) in
                 
-            })
+                DRHUD.showSuccess(title: "登录成功", subtitle: nil)
+                DRInterFaceTool.topViewController()?.navigationController?.popViewController(animated: true)
+                
+            }) { (errorMsg) in
+                DRHUD.showError(title: errorMsg, subtitle: nil)
+            }
             return
         }
         

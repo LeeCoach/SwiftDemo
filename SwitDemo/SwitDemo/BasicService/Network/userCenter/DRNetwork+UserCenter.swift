@@ -32,15 +32,15 @@ extension DRNetwork {
     
     
     // MARK: 登录
-    static func userLogin(moblie:String,password:String?,smsKey:String?,code:String?,type:String?,_ success:@escaping successBlock ,_ faild:@escaping faildBlock) {
+    static func userLogin(moblie:String,password:String? = nil,smsKey:String? = nil,code:String? = nil,type:String? = nil,_ success:@escaping successBlock ,_ faild:@escaping faildBlock) {
         
         let url = host_path + "Cis/UserLogin"
-        let params:Dictionary<String,String> = [
+        let params:Dictionary<String,Any> = [
             "mobile" : moblie,
-            "password" : password!,
-            "smsKey" : smsKey!,
-            "code" : code!,
-            "type" : type!
+            "password" : password,
+            "smsKey" : smsKey,
+            "code" : code,
+            "type" : type
         ]
         DRNetwork.request(urlpath: url, params: params, success: { (obj) in
             
@@ -57,12 +57,37 @@ extension DRNetwork {
         let params:Dictionary<String,String> = ["s" : DRUserCenter.shareManager.token!]
         DRNetwork.request(urlpath: url, params: params, success: { (response) in
             
-            let userModel:DRUserModel = DRUserModel.dictionaryToModel(response as! [String : Any], DRUserModel.self) as! DRUserModel
-            success(userModel)
+            success(response)
             
         }) { (errorMsg) in
             faild(errorMsg!)
         }
     }
+
+    
+    /// 短信验证码
+    ///
+    /// - Parameters:
+    ///   - mobile: 手机号码
+    ///   - type: 发送类型 1登录 2提现 3绑定号码
+    ///   - code: 当操作类型为2时需要传入验证码
+    ///   - act: 操作类型 1发送验证码 2验证验证码
+    static func getSmsCode(mobile:String,type:String,code:String? = nil,act:String,_ success:@escaping successBlock ,_ faild:@escaping faildBlock) {
+        let url = host_path + "Base/SmsCode"
+        let params:Dictionary<String,Any> = [
+            "mobile" : mobile,
+            "type" : type,
+            "code" : code as Any,
+            "act" : act,
+        ]
+        DRNetwork.request(urlpath: url, params: params, success: { (response) in
+            
+            success(response)
+            
+        }) { (errorMsg) in
+            faild(errorMsg!)
+        }
+    }
+    
     
 }
