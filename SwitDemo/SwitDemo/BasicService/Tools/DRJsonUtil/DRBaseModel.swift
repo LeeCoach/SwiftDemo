@@ -48,8 +48,8 @@ class DRBaseModel: HandyJSON {
     /**
      *  字典转对象
      */
-    static func dictionaryToModel(_ dictionStr:[String:Any],_ modelType:HandyJSON.Type) -> DRBaseModel {
-        if dictionStr.count == 0 {
+    static func dictionaryToModel(_ dictionStr:[String: Any]?,_ modelType:HandyJSON.Type) -> DRBaseModel {
+        if dictionStr!.count == 0 {
             #if DEBUG
             print("dictionaryToModel:字符串为空")
             #endif

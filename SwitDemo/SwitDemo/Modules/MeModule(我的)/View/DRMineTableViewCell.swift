@@ -30,7 +30,7 @@ class DRMineTableViewCell: UITableViewCell {
         
         self.titleLabel = UILabel.init()
         self.titleLabel!.font = UIFont.systemFont(ofSize: 14)
-        self.titleLabel!.textColor = UIColor.init(hexString: "#000000")
+        self.titleLabel!.textColor = UIColor.colorHexStr("#000000")
         self.contentView.addSubview(self.titleLabel!)
         
         self.iconImageView = UIImageView.init()
@@ -39,7 +39,7 @@ class DRMineTableViewCell: UITableViewCell {
         
         self.detailLabel = UILabel.init()
         self.detailLabel!.font = UIFont.systemFont(ofSize: 14)
-        self.detailLabel!.textColor = UIColor.init(hexString: "#f2f2f2")
+        self.detailLabel!.textColor = UIColor.colorHexStr("#f2f2f2")
         self.contentView.addSubview(self.detailLabel!)
 
         self.iconImageView?.snp.makeConstraints({ (make) in

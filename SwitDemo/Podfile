@@ -11,7 +11,7 @@ target 'SwitDemo' do
     pod 'Alamofire', '~> 4.7.3'
     #json解析
 #    pod 'SwiftyJSON', '~> 4.1.0' 不好用
-pod 'HandyJSON', '~> 5.0.0'
+    pod 'HandyJSON', '~> 5.0.0'
     #图片加载
     pod 'Kingfisher', '~> 4.8.1'
     #自动布局约束
@@ -25,6 +25,8 @@ pod 'HandyJSON', '~> 5.0.0'
   # Pods for SwitDemo
   #无限轮播
   pod 'FSPagerView', '~> 0.8.3'
+  # 下拉刷新
+  pod 'ESPullToRefresh', '~> 2.9'
 
   target 'SwitDemoTests' do
     inherit! :search_paths

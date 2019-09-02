@@ -19,6 +19,7 @@ class DRLoginViewController: DRViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "登录"
         
         setUI()
         
@@ -49,43 +50,45 @@ class DRLoginViewController: DRViewController {
         if viewType == .code {
             
             loginBtn?.isEnabled = false
-            DRNetwork.getSmsCode(mobile: (mobileTF?.text!)!, type: "1", code: codeTF?.text, act: "2", { (response) in
-                
-                let dict = response as! NSDictionary
-                let data = dict["data"] as! NSDictionary
-                if let smsKey = data["smsKey"] {
+            DRNetwork.getSmsCode(mobile: (mobileTF?.text!)!, type: "1",code: codeTF?.text, act: "2") { (BaseResult) -> (Void) in
+                if BaseResult.isSuccess {
                     
-                    DRNetwork.userLogin(moblie: self.mobileTF!.text!, password: nil, smsKey: smsKey as? String, code: nil, type: "1", { (obj) in
-                        DRHUD.hide()
-                        self.requestUserDetails()
-                        self.loginBtn?.isEnabled = true
+                    let data = BaseResult.data as? NSDictionary
+                    if let smsKey = data?["smsKey"] {
                         
-                    }, { (errorMsg) in
-                        DRHUD.showError(title: errorMsg,subtitle: nil)
+                        DRNetwork.userLogin(moblie: self.mobileTF!.text!, password: nil, smsKey: smsKey as? String, code: nil, type: "1", completionHandler: { (BaseResult) -> (Void) in
+                            if BaseResult.isSuccess {
+                                DRHUD.hide()
+                                self.requestUserDetails()
+                                self.loginBtn?.isEnabled = true
+                            } else {
+                                DRHUD.showError(title: BaseResult.msg,subtitle: nil)
+                                self.loginBtn?.isEnabled = true
+                            }
+                        })
+                        
+                    } else {
+                        DRHUD.showError(title: "验证失败",subtitle: nil)
                         self.loginBtn?.isEnabled = true
-                    })
+                    }
                     
                 } else {
-                    DRHUD.showError(title: "验证失败",subtitle: nil)
+                    DRHUD.showError(title: BaseResult.msg,subtitle: nil)
                     self.loginBtn?.isEnabled = true
                 }
-                
-            }) { (errorMsg) in
-                DRHUD.showError(title: errorMsg, subtitle: nil)
-                self.loginBtn?.isEnabled = true
             }
-            
         } else { //密码登录
             
             loginBtn?.isEnabled = false
-            DRNetwork.userLogin(moblie: mobileTF!.text!, password: passwordTF?.text, smsKey: nil, code: nil, type: "5", { (obj) in
-                DRHUD.hide()
-                self.requestUserDetails()
-                self.loginBtn?.isEnabled = true
-                
-            }) { (errorMsg) in
-                DRHUD.showError(title: errorMsg, subtitle: nil)
-                self.loginBtn?.isEnabled = true
+            DRNetwork.userLogin(moblie: mobileTF!.text!, password: passwordTF?.text, smsKey: nil, code: nil, type: "5") { (BaseResult) -> (Void) in
+                if BaseResult.isSuccess {
+                    DRHUD.hide()
+                    self.requestUserDetails()
+                    self.loginBtn?.isEnabled = true
+                } else {
+                    DRHUD.showError(title: BaseResult.msg, subtitle: nil)
+                    self.loginBtn?.isEnabled = true
+                }
             }
         }
     }
@@ -113,54 +116,62 @@ class DRLoginViewController: DRViewController {
             return
         }
         
-        DRNetwork.getSmsCode(mobile: mobileTF!.text!, type: "1", code: nil, act: "1", { (obj) in
-            
-            var timeout = 60
-            let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
-            timer.schedule(wallDeadline: .now(), repeating: .seconds(1))
-            timer.setEventHandler {
-                timeout = timeout - 1
-                
-                if timeout <= 0 {
-                    timer.cancel()
-                    DispatchQueue.main.async {
-                        // Run async code on the main queue
-                        self.codeBtn?.setTitle("重新获取", for: .normal)
-                        self.codeBtn?.isUserInteractionEnabled = true
+        DRNetwork.getSmsCode(mobile: mobileTF!.text!, type: "1", act: "1") { (BaseResult) -> (Void) in
+            if BaseResult.isSuccess {
+                var timeout = 60
+                let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
+                timer.schedule(wallDeadline: .now(), repeating: .seconds(1))
+                timer.setEventHandler {
+                    timeout = timeout - 1
+                    
+                    if timeout <= 0 {
+                        timer.cancel()
+                        DispatchQueue.main.async {
+                            // Run async code on the main queue
+                            self.codeBtn?.setTitle("重新获取", for: .normal)
+                            self.codeBtn?.isUserInteractionEnabled = true
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            // Run async code on the main queue
+                            self.codeBtn?.setTitle("\(timeout)s", for: .normal)
+                            self.codeBtn?.isUserInteractionEnabled = false
+                        }
                     }
-                } else {
-                    DispatchQueue.main.async {
-                        // Run async code on the main queue
-                        self.codeBtn?.setTitle("\(timeout)s", for: .normal)
-                        self.codeBtn?.isUserInteractionEnabled = false
-                    }
+                    
                 }
-                
+                timer.resume()
+            } else {
+                DRLog(BaseResult.msg)
             }
-            timer.resume()
-            
-        }) { (errorMsg) in
-            DRLog(errorMsg)
         }
     }
     
     // MARK: 登录成功后，重新获取用户详情
     private func requestUserDetails() {
         
-        DRUserCenter.shareManager.userDetails(success: { (obj) in
-            DRHUD.showSuccess(title: "登录成功", subtitle: "准备关闭页面")
-            DRUserCenter.shareManager.loginSuccessCall!(obj)
-            self.dismiss(animated: true, completion: {
-                NotificationCenter.default.post(name: NSNotification.Name(kNotification_loginOnline), object: self)
-            })
-        }) { (errorMsg) in
-            DRHUD.showError(title: errorMsg, subtitle: nil)
+        DRUserCenter.shareManager.userDetails { (loginBaseModel) in
+            if loginBaseModel.message == nil  {
+                DRHUD.showSuccess(title: "登录成功", subtitle: "准备关闭页面")
+                
+//                let model = loginBaseModel.init()
+//                model.data = userModel
+//                DRUserCenter.shareManager.loginHandlerCall!(model)
+                self.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: NSNotification.Name(kNotification_loginOnline), object: self)
+                })
+            } else {
+                DRHUD.showError(title: loginBaseModel.message, subtitle: nil)
+            }
+            
         }
     }
     
     @objc func clickBackBtnAction() {
         self.dismiss(animated: true) {
-            DRUserCenter.shareManager.loginFaileCall?("取消登录")
+            let model = loginBaseModel.init()
+            model.message = "取消登录"
+            DRUserCenter.shareManager.loginHandlerCall?(model)
         }
     }
     
@@ -224,7 +235,7 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入手机号码"
-        tf.textColor = UIColor.init(hexString: "#000000")
+        tf.textColor = UIColor.colorHexStr("#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.clearButtonMode = .whileEditing
         tf.keyboardType = .numberPad
@@ -242,10 +253,10 @@ class DRLoginViewController: DRViewController {
         let btn = UIButton.init(type: .custom)
         btn.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
         btn.setTitle("获取验证码", for: .normal)
-        btn.setTitleColor(UIColor.init(hexString: "#666666"), for: .normal)
-        btn.setTitleColor(UIColor.init(hexString: "#666666"), for: .disabled)
+        btn.setTitleColor(UIColor.colorHexStr("#666666"), for: .normal)
+        btn.setTitleColor(UIColor.colorHexStr("#666666"), for: .disabled)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 9)
-        btn.backgroundColor = UIColor.init(hexString: "#f2f2f2")
+        btn.backgroundColor = UIColor.colorHexStr("#f2f2f2")
         btn.addTarget(self, action: #selector(getVerificationCode), for: .touchUpInside)
         return btn
     }()
@@ -255,7 +266,7 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入验证码"
-        tf.textColor = UIColor.init(hexString: "#000000")
+        tf.textColor = UIColor.colorHexStr("#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.clearButtonMode = .whileEditing
         tf.keyboardType = .numberPad
@@ -275,7 +286,7 @@ class DRLoginViewController: DRViewController {
         tf.textAlignment = NSTextAlignment.center
         tf.font = font(size: 14)
         tf.placeholder = "请输入密码"
-        tf.textColor = UIColor.init(hexString: "#000000")
+        tf.textColor = UIColor.colorHexStr("#000000")
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.clearButtonMode = .whileEditing
 //        tf.keyboardType = .numberPad
@@ -301,7 +312,7 @@ class DRLoginViewController: DRViewController {
     lazy var changeBtn:UIButton? = {
        let btn = UIButton.init(type: .custom)
         btn.setTitle("使用密码登录", for: .normal)
-        btn.setTitleColor(UIColor.init(hexString: "#666666"), for: .normal)
+        btn.setTitleColor(UIColor.colorHexStr("#666666"), for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         btn.addTarget(self, action: #selector(changeBtnAction), for: .touchUpInside)
         
@@ -312,8 +323,8 @@ class DRLoginViewController: DRViewController {
         let btn = UIButton.init(type: .custom)
         btn.setTitle("登录", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.setTitleColor(UIColor.init(hexString: "#333333"), for: .normal)
-        btn.backgroundColor = UIColor.init(hexString: "#ffe35e")
+        btn.setTitleColor(UIColor.colorHexStr("#333333"), for: .normal)
+        btn.backgroundColor = UIColor.colorHexStr("#ffe35e")
         btn.addTarget(self, action: #selector(loginBtnAction), for: .touchUpInside)
         
         return btn

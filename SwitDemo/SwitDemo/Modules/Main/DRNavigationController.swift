@@ -13,16 +13,13 @@ class DRNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.view.backgroundColor = UIColor.white;
+//        navigationController?.view.backgroundColor = UIColor.white;
         
-//        navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.barTintColor = UIColor.init(hexString: "#FFFFFF")
+//        self.extendedLayoutIncludesOpaqueBars = false //设置Y起始位置为导航栏下，当设置为YES时，视图在导航栏层下，状态栏下位置开始
+//        self.automaticallyAdjustsScrollViewInsets = false
         
-        self.extendedLayoutIncludesOpaqueBars = false //设置Y起始位置为导航栏下，当设置为YES时，视图在导航栏层下，状态栏下位置开始
-        self.automaticallyAdjustsScrollViewInsets = false
-        
-        let navigationBar = UINavigationBar.appearance()
-        navigationBar.setBackgroundImage(UIImage.init(), for: .default) //导航背景色
+//        let navigationBar = UINavigationBar.appearance()
+//        navigationBar.setBackgroundImage(UIImage.init(), for: .default) //导航背景色
 //        navigationBar.shadowImage = UIImage.init()  //导航底线
 
         // Do any additional setup after loading the view.

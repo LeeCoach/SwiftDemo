@@ -11,20 +11,33 @@ import Foundation
 import Alamofire
 import HandyJSON
 
-class BaseNetworkModel:HandyJSON  {
-    var code:String?
-    var msg:String?
-    var session:String?
-    var data:Any? //<T>?
+class BaseResult:HandyJSON  {
+    var code:Int? = 0
+    var msg:String? = nil
+    var session:String? = nil
+    var data:Any?
+    
+    var isSuccess: Bool = true
+    var isFailure: Bool = false
     
     required init() {
         
     }
 }
 
+class error: NSObject {
+    
+    var msg:String? = nil
+    var code:Int? = 0
+    
+    required override init() {
+        
+    }
+}
+
 /// 声明闭包回调
-typealias successBlock = (_ responseData: AnyObject?) ->()
-typealias faildBlock = (_ error: String?) ->()
+typealias handlerBlock = (_ responseData: BaseResult) ->(Void)
+
 
 class DRNetwork: NSObject {
     
@@ -35,7 +48,7 @@ class DRNetwork: NSObject {
     }()
     
     ///公共方法
-    static func request(urlpath:String,params:Dictionary<String,Any>,success:@escaping successBlock,faild: @escaping faildBlock) {
+    static func request(urlpath:String,params:Dictionary<String,Any>,completionHandler:@escaping handlerBlock) {
         
         var paramsKK = params
         
@@ -46,40 +59,51 @@ class DRNetwork: NSObject {
         }
         paramsKK["s"] = DRUserCenter.shareManager.token
         
-        requestPost(urlpath: urlpath, params: paramsKK, success: success, faild: faild)
+        requestPost(urlpath: urlpath, params: paramsKK, completionHandler: completionHandler)
     }
     
     ///获取token
-    static func requestToken(urlpath:String,params:Dictionary<String,Any>,success:@escaping successBlock,faild: @escaping faildBlock) {
+    static func requestToken(urlpath:String,params:Dictionary<String,Any>,completionHandler:@escaping handlerBlock) {
         
-        requestPost(urlpath: urlpath, params: params, success: success, faild: faild)
+        requestPost(urlpath: urlpath, params: params, completionHandler: completionHandler)
     }
     
-    ///能用post方法
-    private static func requestPost(urlpath:String,params:Dictionary<String,Any>,success:@escaping successBlock,faild: @escaping faildBlock) {
+    ///通用post方法
+    private static func requestPost(urlpath:String,params:Dictionary<String,Any>,completionHandler:@escaping handlerBlock) {
         
         requestBase(urlpath: urlpath, params: params) { (response) in
             
-            switch response.result {
-            case .success(let json):
-                
-                let dict = json as! NSDictionary
-                let baseModel:BaseNetworkModel = JSONDeserializer.deserializeFrom(dict: dict)!
-           
-                switch(baseModel.code) {
-                case "200":
-                    success(dict)
-                case "1001": // token失效，请重新登录
-                    NotificationCenter.default.post(name: NSNotification.Name(kNotification_getSessionNew), object: nil)
-                case "1005": //新设备登录，逼退
-                    NotificationCenter.default.post(name: NSNotification.Name(kNotification_logoutOffline), object: nil)
-                default:
-                    DRLog("获取数据异常 errorMsg:\(baseModel.msg ?? "")")
-                    faild(baseModel.msg)
+            if response.result.isSuccess {
+                if let jsonString = response.result.value {
+                    if let obj = BaseResult.deserialize(from: jsonString as? NSDictionary) {
+                        
+                        switch(obj.code) {
+                        case 200:
+                            obj.isSuccess = true
+                            obj.isFailure = false
+                        case 1001: // token失效，请重新登录
+                            NotificationCenter.default.post(name: NSNotification.Name(kNotification_getSessionNew), object: nil)
+                            obj.isSuccess = false
+                            obj.isFailure = true
+                        case 1005: //新设备登录，逼退
+                            NotificationCenter.default.post(name: NSNotification.Name(kNotification_logoutOffline), object: nil)
+                            obj.isSuccess = false
+                            obj.isFailure = true
+                        default:
+                            DRLog("获取数据异常 errorMsg:\(obj.msg ?? "")")
+                            obj.isSuccess = false
+                            obj.isFailure = true
+                        }
+                        completionHandler(obj)
+                    }
                 }
-                
-            case .failure(let error):
-                DRLog("获取数据异常 errorMsg:\(error)")
+            } else {
+                DRLog(response.error)
+                let obj = BaseResult.init()
+                obj.msg = "error.description()"
+                obj.isSuccess = false
+                obj.isFailure = true
+                completionHandler(obj)
             }
         }
     }

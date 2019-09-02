@@ -14,4 +14,5 @@ class DRSectionConfingModel: NSObject {
     var sectionHeadHeight: CGFloat = 0.00
     var sectionFootHeight: CGFloat = 0.00
     var sectionItems:Array<AnyObject>?
+    var sortNum:NSNumber?
 }

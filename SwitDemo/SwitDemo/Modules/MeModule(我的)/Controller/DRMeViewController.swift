@@ -49,13 +49,15 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
     
     func requestUserDetails() {
         
-        DRUserCenter.shareManager.userDetails(success: { (obj) in
-            self.dataArray.removeAll()
-            self.setGroup()
-            self.headView?.infoModel = DRUserCenter.shareManager.userModel
-            self.tableView.reloadData()
-        }) { (errorMsg) in
-            DRHUD.showError(title: errorMsg, subtitle: nil)
+        DRUserCenter.shareManager.userDetails { (loginBaseModel) in
+            if loginBaseModel.message == nil {
+                self.dataArray.removeAll()
+                self.setGroup()
+                self.headView?.infoModel = DRUserCenter.shareManager.userModel
+                self.tableView.reloadData()
+            } else {
+                DRHUD.showError(title: loginBaseModel.message, subtitle: nil)
+            }
         }
     }
     
@@ -149,7 +151,7 @@ class DRMeViewController: DRViewController,UITableViewDelegate,UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headVeiw = tableView.dequeueReusableHeaderFooterView(withIdentifier: "UITableViewHeaderFooterView")
-        headVeiw!.contentView.backgroundColor = UIColor.init(hexString: "#f2f2f2")
+        headVeiw!.contentView.backgroundColor = UIColor.colorHexStr("#f2f2f2")
         
         return headVeiw
     }

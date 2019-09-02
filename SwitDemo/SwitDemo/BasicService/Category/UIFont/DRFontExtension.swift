@@ -12,6 +12,17 @@ class DRFontExtension: UIFont {
 
 }
 
-func font(size:CGFloat) -> UIFont {
-    return UIFont.systemFont(ofSize: size)
+extension UIFont {
+    class func font(_ size:CGFloat = 13) -> UIFont {
+        if #available(iOS 8.2, *) {
+            return UIFont.systemFont(ofSize: size, weight: .regular)
+        } else {
+            return UIFont.systemFont(ofSize: size)
+        }
+    }
+    
 }
+
+//func font(size:CGFloat) -> UIFont {
+//    return UIFont.systemFont(ofSize: size)
+//}

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarVC = DRTabBarController()
         self.window?.rootViewController = tabBarVC
+        self.window?.backgroundColor = UIColor.white  //导航栏为透明，这里设置底色为白色
         
         
         return true

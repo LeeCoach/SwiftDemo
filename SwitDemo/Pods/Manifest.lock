@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - ESPullToRefresh (2.9)
   - FSPagerView (0.8.3)
   - HandyJSON (5.0.0)
   - Kingfisher (4.8.1)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7.3)
+  - ESPullToRefresh (~> 2.9)
   - FSPagerView (~> 0.8.3)
   - HandyJSON (~> 5.0.0)
   - Kingfisher (~> 4.8.1)
@@ -17,6 +19,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - ESPullToRefresh
     - FSPagerView
     - HandyJSON
     - Kingfisher
@@ -25,12 +28,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  ESPullToRefresh: ce058a36454a5032519cc9d8b45da217728cf104
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   HandyJSON: 992f2d661716d6a91de82d0056927bc7813b5770
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 14b121a1d4633ec2df61262b3564543e27ac59f7
+PODFILE CHECKSUM: 827db71c35e7b83068faa781b36fe04f40f5b1c9
 
 COCOAPODS: 1.5.3

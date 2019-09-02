@@ -49,7 +49,7 @@ class DRSettingViewController: DRViewController,UITableViewDelegate,UITableViewD
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footView = UIView.init(frame: CGRect(x: 0, y: 0, width: DRScreen_Width, height: 5))
-        footView.backgroundColor = UIColor.init(hexString: "#f2f2f2")
+        footView.backgroundColor = UIColor.colorHexStr("#f2f2f2")
         return footView
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,11 +73,14 @@ class DRSettingViewController: DRViewController,UITableViewDelegate,UITableViewD
                 let action0 = UIAlertAction(title: "取消", style: .cancel, handler: nil)
                 let action1 = UIAlertAction(title: "确定", style: .default) { (UIAlertAction) in
                     
-                    DRUserCenter.shareManager.userLogout(success: { (obj) in
-                        DRHUD.showSuccess(title: "退出成功", subtitle: nil)
-                        self.navigationController?.popViewController(animated: true)
-                    }, faile: { (errorMsg) in
-                        DRHUD.showError(title: errorMsg, subtitle: nil)
+                    DRUserCenter.shareManager.userLogout(completionHandler: { (loginBaseModel) in
+                        if loginBaseModel.message == nil {
+                            
+                            DRHUD.showSuccess(title: "退出成功", subtitle: nil)
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            DRHUD.showError(title: loginBaseModel.message, subtitle: nil)
+                        }
                     })
                 }
                 alert.addAction(action0)
@@ -86,13 +89,13 @@ class DRSettingViewController: DRViewController,UITableViewDelegate,UITableViewD
                 
             } else {
                 
-                DRUserCenter.shareManager.showLoginView(success: { (obj) in
-                    
-                    DRHUD.showSuccess(title: "登录成功", subtitle: nil)
-                    self.navigationController?.popViewController(animated: true)
-                    
-                }) { (errorMsg) in
-                    DRHUD.showError(title: errorMsg, subtitle: nil)
+                DRUserCenter.shareManager.showLoginView { (loginBaseModel) in
+                    if loginBaseModel.message == nil {
+                        DRHUD.showSuccess(title: "登录成功", subtitle: nil)
+                        self.navigationController?.popViewController(animated: true)
+                    } else {
+                        DRHUD.showError(title: loginBaseModel.message, subtitle: nil)
+                    }
                 }
             }
             

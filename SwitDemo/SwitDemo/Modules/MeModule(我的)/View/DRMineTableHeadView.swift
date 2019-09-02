@@ -15,29 +15,29 @@ class DRMineTableHeadView: UIView {
         let logo = UIImageView.init()
         logo.image = UIImage.init(named: "")
         logo.contentMode = .scaleAspectFit
-        logo.backgroundColor = UIColor.init(hexString: "#eeeeee")
+        logo.backgroundColor = UIColor.colorHexStr("#eeeeee")
         return logo
     }()
     lazy var nameLabel:UILabel? = {
         let label = UILabel.init()
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.init(hexString: "#000000")
+        label.textColor = UIColor.colorHexStr("#000000")
         return label
     }()
     
     var openVipBtn:UIButton? = {
        let btn = UIButton.init(type: .custom)
         btn.setTitle("开通VIP", for: .normal)
-        btn.setTitleColor(UIColor.init(hexString: "#ffe35e"), for: .normal)
+        btn.setTitleColor(UIColor.colorHexStr("#ffe35e"), for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        btn.backgroundColor = UIColor.init(hexString: "#F2F2F2")
+        btn.backgroundColor = UIColor.colorHexStr("#F2F2F2")
         btn.addTarget(self, action: #selector(openVipBtnAction(button:)), for: .touchUpInside)
         return btn
     }()
     
     
-    var infoModel:DRUserModel! {
-        didSet {
+    var infoModel:DRUserModel? {
+        willSet(newValue) {
             logoImageView?.kf.setImage(with: URL(string: DRUserCenter.shareManager.userModel!.avatarPath!))
             nameLabel?.text = DRUserCenter.shareManager.userModel?.nickname
         }
@@ -48,6 +48,8 @@ class DRMineTableHeadView: UIView {
         addSubview(logoImageView!)
         addSubview(nameLabel!)
         addSubview(openVipBtn!)
+        logoImageView?.dr_setCornerRadius(cornerRadius: 30, roundingCorners: .allCorners)
+//        openVipBtn?.dr_setCornerRadius(cornerRadius: 15, roundingCorners: .topLeft)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(clickBtnAction))
         tap.numberOfTapsRequired = 1
@@ -67,6 +69,7 @@ class DRMineTableHeadView: UIView {
         openVipBtn?.snp.makeConstraints({ (make) in
             make.right.equalToSuperview()
             make.centerY.equalTo(logoImageView!)
+            make.height.equalTo(30)
         })
     }
     
@@ -78,17 +81,16 @@ class DRMineTableHeadView: UIView {
     @objc func clickBtnAction(button:UIButton) -> () {
         guard DRUserCenter.shareManager.loginStatue == .Online else {
             //需要登录
-            DRUserCenter.shareManager.showLoginView(success: { (obj) in
-                
-                DRHUD.showSuccess(title: "登录成功", subtitle: nil)
-                DRInterFaceTool.topViewController()?.navigationController?.popViewController(animated: true)
-                
-            }) { (errorMsg) in
-                DRHUD.showError(title: errorMsg, subtitle: nil)
+            DRUserCenter.shareManager.showLoginView { (loginBaseModel) in
+                if loginBaseModel.message == nil {
+                    DRHUD.showSuccess(title: "登录成功", subtitle: nil)
+                    DRInterFaceTool.topViewController()?.navigationController?.popViewController(animated: true)
+                } else {
+                    DRHUD.showError(title: loginBaseModel.message, subtitle: nil)
+                }
             }
             return
         }
-        
         //进入编辑页面
         
         

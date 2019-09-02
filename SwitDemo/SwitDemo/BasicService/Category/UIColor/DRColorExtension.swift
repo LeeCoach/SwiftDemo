@@ -13,16 +13,17 @@ class DRColorExtension: UIFont {
 }
 
 extension UIColor {
-    convenience init(hexString:String){
+    
+    // MARK: 16进制颜色
+    class func colorHexStr(_ hex: String, alpha : CGFloat = 1.0) -> UIColor {
         //处理数值
-        var cString = hexString.uppercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        var cString = hex.uppercased().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         let length = (cString as NSString).length
         //错误处理
         if (length < 6 || length > 7 || (!cString.hasPrefix("#") && length == 7)){
             //返回whiteColor
-            self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-            return
+            return UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         }
         
         if cString.hasPrefix("#"){
@@ -49,6 +50,23 @@ extension UIColor {
         Scanner(string: gString).scanHexInt32(&g)
         Scanner(string: bString).scanHexInt32(&b)
         //根据颜色值创建UIColor
-        self.init(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
+        return UIColor(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
     }
+    
+    // MARK: 简化RGB颜色写法
+    class func RGBA(_ r:uint,g:uint,b:uint,a:CGFloat = 1.0) ->UIColor {
+        let redFloat = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue = CGFloat(b) / 255.0
+        return UIColor(red: redFloat, green: green, blue: blue, alpha: a)
+    }
+    
+    // MARK: 随机色
+    class func randomColor() -> UIColor {
+        return UIColor(red: CGFloat(arc4random_uniform(256)), green: CGFloat(arc4random_uniform(256)), blue: CGFloat(arc4random_uniform(256)), alpha: 1.0)
+    }
+    
+    
+    
+    
 }

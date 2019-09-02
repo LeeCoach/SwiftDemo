@@ -14,6 +14,10 @@ class DRViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white;
+        //设置坐标位置从导航栏下开始
+        if self.responds(to: #selector(getter: UIViewController.edgesForExtendedLayout)) {
+            self.edgesForExtendedLayout = []
+        }
     }
 
     override func didReceiveMemoryWarning() {
